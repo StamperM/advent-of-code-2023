@@ -11,7 +11,7 @@ fs.readFile('input1.txt', (err, data) => {
   if (err) throw err;
 
   dataInput = data.toString().split('\n');
-  //   theCode(dataInput, calibrationValue);
+    theCode(dataInput, calibrationValue);
 });
 
 // numberArr[1]
@@ -24,17 +24,10 @@ function getCalibartion(arr) {
   // Loop through data to remove any non digits and convert the string to number
   for (let i = 0; i <= 3; i++) {
     newString = arr[i];
-    console.log(newString, 'string line 27');
     getNewString(newString);
-    // ^0-9 will find any char that is not a digit
-    //  numResults = newString.replace(/[^0-9]/g, '');
     // This will give a calibraion value that will need to be added to the total.
-    console.log(numResults, 'line 32');
+    
   }
-
-  console.log(numResults, 'line 41');
-  calNumber(numResults);
-  console.log(numResults);
   // get only numbers
   numResultsToNum = parseInt(claibrationNumber);
   console.log(numResultsToNum, 'line 43');
@@ -45,33 +38,17 @@ function getCalibartion(arr) {
 
   return calibrationValue;
 }
-getCalibartion(arrayCal);
 
-// function calibrationValues(list){
-//    const calArr = list.split("")
-//    console.log(calArr);
-
-// }
 
 // need to set newString to zero if there are no numbers in the string. And any other create a string will all the digits.
 function getNewString(arr3) {
-  let nonNumber = '';
-  // not digits
-
-  nonNumberResults = nonNumber.replace(regex1, 0);
-  console.log(nonNumber, 'line 62');
-  // should replace any
-  numResults = nonNumber.replace(/[^0-9]/g, '');
   //  ^0-9 will find any char that is not a digit
   numResults = newString.replace(/[^0-9]/g, '');
-  console.log(numResults, 'line66');
-  if (nonNumber === 0 && numResults > 0) {
-    console.log(numResults, 'should be number');
-    return numResults;
-  } else {
-    console.log(numResults, 'should be zero');
-    return (numResults = 0);
+  if (numResults === ''){
+    numResults = "0";
   }
+  console.log(numResults, typeof numResults);
+  calNumber(numResults);
 }
 
 function calNumber(results) {
@@ -99,5 +76,4 @@ function theCode(arr1, arr2) {
   getTotalCalibration(arr2);
   console.log(totalCalibration);
 }
-// console.log(arrayCal);
-//
+
