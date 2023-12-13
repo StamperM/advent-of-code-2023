@@ -7,6 +7,7 @@ let numResults = NaN;
 let newString = '';
 let totalCalibration = 0;
 let numResultsToNum = NaN;
+let newStringWithNumber = '';
 fs.readFile('input1.txt', (err, data) => {
   if (err) throw err;
 
@@ -20,12 +21,32 @@ function getCalibartion(arr) {
   //   numResultsToNum will convert the numResults to a number
   let numResultsToNum = NaN;
   // Loop through data to remove any non digits and convert the string to number
-  for (let i = 0; i <= 10; i++) {
+  for (let i = 0; i <= arr.length -1; i++) {
     newString = arr[i];
-    getNewString(newString);
+console.log(newString, 'passed in');
+newString= newString.replace('one','1');
+newString= newString.replace('two','2');
+newString= newString.replace('three','3');
+newString= newString.replace('four','4');
+newString= newString.replace('five', '5');
+newString= newString.replace('six', '6');
+newString= newString.replace('seven','7');
+newString= newString.replace( 'eight','8')
+newString= newString.replace('nine','9')
+newString= newString.replace('zero','0')
+
+console.log(newString, 'should update the number to a number');
+    numResults = newString.replace(/[^0-9]/g, '');
+    if (numResults === '') {
+      numResults = '0';
+    }
+    console.log(numResults, 'numResults');
+   
+    calNumber(numResults);
+    // getNewString(newString);
     // This will give a calibraion value that will need to be added to the total.
   }
-
+console.log();
   return calibrationValue;
 }
 
@@ -47,13 +68,14 @@ function calNumber(results) {
     claibrationNumber =
       numResults.charAt(0) + numResults.charAt(numResults.length - 1);
   }
+  console.log(claibrationNumber, 'calibration number');
   numResultsToNum = parseInt(claibrationNumber);
   calibrationValue.push(numResultsToNum);
 }
 // getting the sum of the each number in calibrationValue
 function getTotalCalibration(arr) {
   for (let i = 0; i <= arr.length - 1; i++) {
-    totalCalibration = totalCalibration + calibrationValue[i];
+    totalCalibration +=  calibrationValue[i];
   }
 }
 // function to call the two functions
