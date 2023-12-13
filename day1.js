@@ -23,17 +23,17 @@ function getCalibartion(arr) {
     newString = arr[i];
     console.log(newString, 'passed in');
     // I'm sure there is a better way to do this but i don't know how.
-    newString = newString.replace('zero', '0');
-    newString = newString.replace('one', '1');
-    newString = newString.replace('two', '2');
-    newString = newString.replace('three', '3');
-    newString = newString.replace('four', '4');
-    newString = newString.replace('five', '5');
-    newString = newString.replace('six', '6');
-    newString = newString.replace('seven', '7');
-    newString = newString.replace('eight', '8');
-    newString = newString.replace('nine', '9');
-
+    newString = newString.replaceAll('zero', '0');
+    newString = newString.replaceAll('one', '1');
+    newString = newString.replaceAll('two', '2');
+    newString = newString.replaceAll('three', '3');
+    newString = newString.replaceAll('four', '4');
+    newString = newString.replaceAll('five', '5');
+    newString = newString.replaceAll('six', '6');
+    newString = newString.replaceAll('seven', '7');
+    newString = newString.replaceAll('eight', '8');
+    newString = newString.replaceAll('nine', '9');
+    console.log(newString);
     getNewString(newString);
   }
   return calibrationValue;
@@ -43,9 +43,6 @@ function getCalibartion(arr) {
 function getNewString(arr3) {
   //  ^0-9 will find any char that is not a digit
   numResults = newString.replace(/[^0-9]/g, '');
-  if (numResults === '') {
-    numResults = '0';
-  }
   calNumber(numResults);
 }
 // to convert string to number and push to calibrationValue array
@@ -57,7 +54,12 @@ function calNumber(nums) {
     claibrationNumber = nums.charAt(0) + nums.charAt(nums.length - 1);
   }
   console.log(claibrationNumber, 'calibration number');
+  if (claibrationNumber.length <= 1) {
+    claibrationNumber += claibrationNumber;
+  }
+  console.log(claibrationNumber);
   numResultsToNum = parseInt(claibrationNumber);
+
   calibrationValue.push(numResultsToNum);
   console.log(calibrationValue);
 }
